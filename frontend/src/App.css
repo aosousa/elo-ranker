@@ -1,0 +1,3 @@
+.App {
+  @apply min-h-screen h-auto items-center justify-center;
+}
