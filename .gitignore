@@ -129,5 +129,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-datasources.js
 .env
+backend/config/*
+backend/uploads/*

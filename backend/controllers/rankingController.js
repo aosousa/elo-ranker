@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const rankingController = express.Router();
 const rankingService = require('../services/rankingService');
 const authMiddleware = require('../middleware/auth');
@@ -33,6 +34,21 @@ const getRankings = (request, response) => {
  * @param {*} response 
  */
 const createRanking = (request, response) => {
+    if (request.files) {
+        const rankingFile = request.files.ranking;
+        if (path.extname(rankingFile.name) !== '.json') {
+            response.status(500).send({
+                status: false,
+                data: null,
+                error: 'Invalid file extension'
+            })
+            return
+        }
+
+        rankingFile.mv(`./uploads/${rankingFile.name}`);
+        request.body.ranking = rankingFile.data.toString().trim().replace(/\s+/g, ' ');
+    }
+
     rankingService.create(request, (error, result) => {
         if (error) {
             response.status(500).send({

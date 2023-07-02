@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     const Ranking = sequelize.define('Ranking', {
         id: {
             type: DataTypes.INTEGER,
