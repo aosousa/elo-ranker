@@ -1,26 +1,21 @@
 module.exports = {
     root: true,
     env: {
-        'browser': true,
-        'es2021': true
+        browser: true,
+        es2021: true
     },
-    extends: [
-        'eslint:recommended',
-        'plugin:react/recommended'
-    ],
+    extends: ['eslint:recommended', 'plugin:react/recommended'],
     parserOptions: {
-        'ecmaVersion': 'latest',
-        'sourceType': 'module'
+        ecmaVersion: 'latest',
+        sourceType: 'module'
     },
-    plugins: [
-        'react'
-    ],
+    plugins: ['react'],
     rules: {
         'no-console': 'warn',
         'no-debugger': 'warn',
         'object-shorthand': 'warn',
         'prefer-destructuring': 'off',
-        'quotes': ['warn', 'single', { 'avoidEscape': true }],
+        quotes: ['warn', 'single', { avoidEscape: true }],
         'default-param-last': 'warn',
         'space-before-blocks': 'warn',
         'no-param-reassign': 'warn',
@@ -43,8 +38,9 @@ module.exports = {
         'no-multiple-empty-lines': 'warn',
         'array-bracket-spacing': 'warn',
         'block-spacing': 'warn',
-        'comma-spacing': ['warn', { 'before': false, 'after': true }],
+        'comma-spacing': ['warn', { before: false, after: true }],
         'key-spacing': 'warn',
-        'no-unused-vars': 'warn'
+        'no-unused-vars': 'warn',
+        'react/prop-types': 'off'
     }
 }

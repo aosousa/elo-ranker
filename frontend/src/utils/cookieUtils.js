@@ -1,21 +1,21 @@
 export class CookieUtils {
-    /**
-     * Get a cookie value by name
-     * @param {string} name Name of the cookie
-     * @returns Cookie value (string) if it is found, null otherwise
-     */
-    static getCookie(name) {
-        const cookies = document.cookie.split(';')
-        let cookie = null
+  /**
+   * Get a cookie value by name
+   * @param {string} name Name of the cookie
+   * @returns Cookie value (string) if it is found, null otherwise
+   */
+  static getCookie(name) {
+    const cookies = document.cookie.split(';')
+    let cookie = null
 
-        for (let i = 0; i < cookies.length; i++) {
-            const cookieInfo = cookies[i].trim().split('=')
-            if (cookieInfo[0] === name) {
-                cookie = cookieInfo[1]
-                break
-            }
-        }
-
-        return cookie
+    for (let i = 0; i < cookies.length; i++) {
+      const cookieInfo = cookies[i].trim().split('=')
+      if (cookieInfo[0] === name) {
+        cookie = cookieInfo[1]
+        break
+      }
     }
+
+    return cookie
+  }
 }

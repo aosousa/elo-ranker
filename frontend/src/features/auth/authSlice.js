@@ -4,13 +4,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 // Utils
 import { client } from '../../utils/apiClient'
 
-export const login = createAsyncThunk('auth/login',
-    async (requestBody) => {
-        const response = await client.post('/auth/login', requestBody)
+export const login = createAsyncThunk('auth/login', async (requestBody) => {
+    const response = await client.post('/auth/login', requestBody, { headers: { 'Content-Type': 'application/json' } })
 
-        return response.data.data
-    }
-)
+    return response.data.data
+})
 
 const initialState = {
     status: 'idle',
@@ -31,16 +29,19 @@ const authSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(login.pending, (state, action) => {
-            state.status = 'loading'
-        }).addCase(login.fulfilled, (state, action) => {
-            state.status = 'succeeded'
-            state.data = action.payload
-            document.cookie = `elo-ranker_session=${action.payload}; Max-Age=${60 * 60 * 31 * 24}; SameSite=None; Secure`
-        }).addCase(login.rejected, (state, action) => {
-            state.status = 'failed'
-            state.error = action.error.message
-        })
+        builder
+            .addCase(login.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(login.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                state.data = action.payload
+                document.cookie = `elo-ranker_session=${action.payload}; Max-Age=${60 * 60 * 31 * 24}; SameSite=None; Secure`
+            })
+            .addCase(login.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.error.message
+            })
     }
 })
 

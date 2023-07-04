@@ -1,4 +1,4 @@
 .grid-container {
-    @apply grid p-3;
-    grid-template-columns: 40% 40% 20%;
+  @apply grid p-3;
+  grid-template-columns: 40% 40% 20%;
 }

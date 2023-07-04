@@ -4,14 +4,23 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.active-link {
+  @apply font-semibold bg-blue-700 text-white rounded-md py-1.5 px-2;
+}
+
+.inactive-link {
+  @apply font-semibold bg-white text-gray-700 rounded-md py-1.5 px-2;
+}
+
+.elo-ranker-input {
+  @apply bg-white text-gray-700 border border-gray-200 rounded-md p-1;
 }
