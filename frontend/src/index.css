@@ -24,3 +24,9 @@ code {
 .elo-ranker-input {
   @apply bg-white text-gray-700 border border-gray-200 rounded-md p-1;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 10% 45% 45%;
+  padding: 0.5em;
+}
