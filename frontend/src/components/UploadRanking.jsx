@@ -27,15 +27,19 @@ export const UploadRanking = () => {
   }
 
   return (
-    <div>
-      <label htmlFor="name">Name</label>
+    <div className="grid">
+      <label className="font-semibold" htmlFor="name">
+        Name
+      </label>
       <input type="text" id="name" className="elo-ranker-input" placeholder="Name" onChange={handleNameChange} />
 
-      <input type="file" className="elo-ranker-input" onChange={handleFileChange} />
+      <input type="file" className="elo-ranker-input mt-2" onChange={handleFileChange} />
 
       <div>{file && `${file.name}`}</div>
 
-      <button onClick={handleUploadClick}>Upload</button>
+      <button className="font-semibold bg-blue-500 hover:bg-blue-700 text-white mt-2 p-2 rounded-md" onClick={handleUploadClick}>
+        Upload
+      </button>
     </div>
   )
 }

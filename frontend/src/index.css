@@ -22,11 +22,15 @@ code {
 }
 
 .elo-ranker-input {
-  @apply bg-white text-gray-700 border border-gray-200 rounded-md p-1;
+  @apply bg-white text-gray-700 border border-gray-200 rounded-md p-1 outline-none;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 10% 45% 45%;
-  padding: 0.5em;
+input:hover,
+select:hover {
+  @apply border-blue-300;
+}
+
+input:focus,
+select:focus {
+  @apply border-blue-500 ring-1 ring-blue-500;
 }

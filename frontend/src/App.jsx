@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import { TopBar } from './components/TopBar'
 
 // Features
+import { Ranking } from './features/rankings/Ranking'
 import { Rankings } from './features/rankings/Rankings'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Rankings />} />
+        <Route path="/rankings/:id" element={<Ranking />} />
       </Routes>
     </div>
   )

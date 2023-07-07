@@ -20,6 +20,8 @@ export const TopBar = () => {
   const authData = useSelector(() => store.getState().auth.data)
   const authStatus = useSelector(() => store.getState().auth.status)
 
+  const [hoverStatus, setHoverStatus] = useState(false)
+
   const onUsernameChanged = (e) => setUsername(e.target.value)
   const onPasswordChanged = (e) => setPassword(e.target.value)
   const onLoginButtonClicked = () => {
@@ -55,8 +57,14 @@ export const TopBar = () => {
 
   return (
     <div className="h-12 flex flex-row items-center bg-white shadow-sm border-b">
-      <div className="flex font-semibold flex-shrink-0 ml-4 pr-4 border-r">
-        <div className="bg-white text-blue-600 text-2xl font-semibold p-1.5">ELO Ranker</div>
+      <div className="flex font-semibold flex-shrink-0 ml-4 pr-4 border-r" onMouseEnter={() => setHoverStatus(true)} onMouseLeave={() => setHoverStatus(false)}>
+        {!hoverStatus && <div className="bg-white text-blue-600 text-2xl font-semibold p-1.5">ELO Ranker</div>}
+        {hoverStatus && (
+          <div className="rounded-md p-1.5">
+            <div className="text-sm">&quot;I need the algorithm.&quot;</div>
+            <div className="italic text-xs">The Social Network (2010)</div>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-shrink-0 ml-2">
