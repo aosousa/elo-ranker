@@ -1,9 +1,10 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 45% 45% 10%;
+  grid-template-columns: 37.5% 37.5% 25%;
   padding: 0.5em;
 }
 
 .ranking-list {
-  @apply text-xl text-center bg-white border border-gray-300 p-5;
+  display: grid;
+  grid-template-columns: 80% 20%;
 }

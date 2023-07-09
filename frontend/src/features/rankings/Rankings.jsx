@@ -20,7 +20,7 @@ export const Rankings = () => {
 
   useEffect(() => {
     dispatch(fetchRankings())
-  })
+  }, [dispatch, fetchRankings])
 
   return (
     <div className="flex flex-col items-center justify-center">

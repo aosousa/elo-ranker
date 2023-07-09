@@ -16,7 +16,7 @@ export async function client(clientData) {
 
     let data
     try {
-        const response = await window.fetch(`http://localhost:4000/elo-ranker-api${clientData.endpoint}`, config)
+        const response = await fetch(`http://localhost:4000/elo-ranker-api${clientData.endpoint}`, config)
 
         data = await response.json()
 
