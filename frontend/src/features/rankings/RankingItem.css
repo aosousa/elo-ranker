@@ -1,5 +1,5 @@
 .grid-item {
-  @apply text-4xl text-center align-middle bg-white border-2 border-black first:border-r-0 py-4 cursor-pointer;
+  @apply text-4xl text-center align-middle bg-white hover:bg-green-50 border-2 border-black first:border-r-0 py-4 cursor-pointer;
 }
 
 .grid-item-img {
@@ -7,5 +7,5 @@
 }
 
 .grid-item-name {
-  @apply mt-8;
+  @apply w-1/2 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
 }

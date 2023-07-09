@@ -16,6 +16,8 @@ export const UploadRanking = () => {
     }
   }
 
+  const canSave = [name, file].every(Boolean)
+
   const dispatch = useDispatch()
 
   const handleUploadClick = () => {
@@ -35,10 +37,8 @@ export const UploadRanking = () => {
 
       <input type="file" className="elo-ranker-input mt-2" onChange={handleFileChange} />
 
-      <div>{file && `${file.name}`}</div>
-
-      <button className="font-semibold bg-blue-500 hover:bg-blue-700 text-white mt-2 p-2 rounded-md" onClick={handleUploadClick}>
-        Upload
+      <button disabled={!canSave} className="font-semibold bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white mt-2 p-2 rounded-md" onClick={handleUploadClick}>
+        Create Ranking
       </button>
     </div>
   )
