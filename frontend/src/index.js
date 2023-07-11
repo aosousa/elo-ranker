@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 // Features
 import { setAuthData } from './features/auth/authSlice'
+import { fetchRankings } from './features/rankings/rankingsSlice'
 
 // Utils
 import { CookieUtils } from './utils/cookieUtils'
@@ -20,6 +21,8 @@ const start = async () => {
     if (sessionCookie) {
         store.dispatch(setAuthData(sessionCookie))
     }
+
+    store.dispatch(fetchRankings())
 
     root.render(
         <React.StrictMode>

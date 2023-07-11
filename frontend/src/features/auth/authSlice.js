@@ -5,7 +5,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { client } from '../../utils/apiClient'
 
 export const login = createAsyncThunk('auth/login', async (requestBody) => {
-    const response = await client.post('/auth/login', requestBody, { headers: { 'Content-Type': 'application/json' } })
+    const response = await client.post('/auth/login', JSON.stringify(requestBody), { headers: { 'Content-Type': 'application/json' } })
 
     return response.data.data
 })
