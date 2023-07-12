@@ -23,11 +23,11 @@ export const Ranking = () => {
   const auth = useSelector(() => store.getState().auth.data)
   const ranking = useSelector((state) => selectRankingById(state, String(params.id)))
   const rankingSliceStatus = useSelector(() => store.getState().rankings.status)
-  const [items, setItems] = useState(ranking ? JSON.parse(ranking.ranking) : [])
-  const [top25Items, setTop25Items] = useState(ranking ? items.slice(0, 25) : [])
+  const items = ranking ? JSON.parse(ranking.ranking) : []
+  const top25Items = items.slice(0, 25)
 
   const rankingContent = (
-    <ol className={auth !== '' ? 'list-decimal border-2 border-l-0 border-gray-500' : 'list-decimal border border-x-0 border-gray-500'}>
+    <ol className={auth !== '' ? 'list-decimal border-2 border-l-0 border-black' : 'list-decimal border border-x-0 border-black'}>
       {top25Items.map((item) => (
         <li className="ml-8" key={item.id}>
           <div className="ranking-list">
@@ -43,20 +43,8 @@ export const Ranking = () => {
   const [rightItem, setRightItem] = useState(null)
 
   const loadPair = () => {
-    const rankingItems = JSON.parse(ranking.ranking)
-    console.log(rankingItems)
-    setItems([...rankingItems])
-    console.log(items)
-
-    // console.log(items)
-    // setTop25Items([...items.slice(0, 25)])
-    // console.log(top25Items)
-
     const leftRandom = Math.floor(Math.random() * items.length)
     let rightRandom = Math.floor(Math.random() * items.length)
-
-    console.log(leftRandom)
-    console.log(rightRandom)
 
     // guarantee two different items
     while (rightRandom === leftRandom) {
@@ -123,8 +111,6 @@ export const Ranking = () => {
         ranking: JSON.stringify(sortedItems)
       })
     )
-
-    loadPair()
   }
 
   useEffect(() => {
@@ -134,23 +120,12 @@ export const Ranking = () => {
       } else {
         loadPair()
       }
-
-      //   else {
-      //     // console.log(ranking)
-      //     // const rankingItems = JSON.parse(ranking.ranking)
-      //     // console.log(rankingItems)
-
-      //     setItems((prevState) => [...prevState, rankingItems])
-      //     // console.log(items)
-      //     // setTop25Items([...items.slice(0, 25)])
-      //     // console.log(top25Items)
-      //   }
     }
   }, [ranking, rankingSliceStatus])
 
   return (
     <>
-      <div className="text-3xl font-bold text-center my-2">{ranking.name}</div>
+      <div className="text-3xl font-bold text-center my-2">{ranking ? ranking.name : ''}</div>
       {auth !== '' && (
         <div className="grid-container">
           {leftItem && <RankingItem item={leftItem} vote={() => updateItemRanking(leftItem, rightItem)} />}

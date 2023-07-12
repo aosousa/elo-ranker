@@ -1,11 +1,73 @@
-.grid-item {
-  @apply text-4xl text-center align-middle bg-white hover:bg-green-50 border-2 border-black first:border-r-0 py-4 cursor-pointer;
+/* using mostly the same breakpoints as defined in Tailwind */
+
+@media only screen and (max-width: 600px) {
+  .grid-item {
+    @apply text-4xl text-center align-middle bg-white hover:bg-green-50 border-2 border-black py-4 cursor-pointer;
+  }
+
+  .grid-item-img {
+    @apply flex mx-auto;
+    height: 250px;
+    width: 250px;
+  }
+
+  .grid-item-name {
+    @apply w-2/3 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+  }
 }
 
-.grid-item-img {
-  @apply flex mx-auto;
+@media only screen and (min-width: 600px) {
+  .grid-item {
+    @apply text-4xl text-center align-middle bg-white hover:bg-green-50 border-2 border-black py-4 cursor-pointer;
+  }
+
+  .grid-item-img {
+    @apply flex mx-auto;
+    height: 250px;
+    width: 250px;
+  }
+
+  .grid-item-name {
+    @apply w-2/3 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+  }
 }
 
-.grid-item-name {
-  @apply w-1/2 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+@media only screen and (min-width: 768px) {
+  .grid-item-img {
+    @apply flex mx-auto;
+    height: 250px;
+    width: 250px;
+  }
+
+  .grid-item-name {
+    @apply w-2/3 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .grid-item-img {
+    @apply flex mx-auto;
+    height: 350px;
+    width: 350px;
+  }
+
+  .grid-item-name {
+    @apply w-1/2 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .grid-item {
+    @apply text-4xl text-center align-middle bg-white hover:bg-green-50 border-2 border-black first:border-r-0 py-4 cursor-pointer;
+  }
+
+  .grid-item-img {
+    @apply flex mx-auto;
+    height: 400px;
+    width: 400px;
+  }
+
+  .grid-item-name {
+    @apply w-1/2 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+  }
 }

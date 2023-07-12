@@ -5,6 +5,8 @@ import './index.css'
 import App from './App'
 import { store } from './app/store'
 import { BrowserRouter } from 'react-router-dom'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 // Features
 import { setAuthData } from './features/auth/authSlice'
@@ -16,6 +18,8 @@ import { CookieUtils } from './utils/cookieUtils'
 const start = async () => {
     const container = document.getElementById('root')
     const root = createRoot(container)
+
+    library.add(faTrash)
 
     const sessionCookie = CookieUtils.getCookie('elo-ranker_session')
     if (sessionCookie) {
