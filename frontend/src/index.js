@@ -6,7 +6,7 @@ import App from './App'
 import { store } from './app/store'
 import { BrowserRouter } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faMoon, faTrash, faSun } from '@fortawesome/free-solid-svg-icons'
 
 // Features
 import { setAuthData } from './features/auth/authSlice'
@@ -16,10 +16,16 @@ import { fetchRankings } from './features/rankings/rankingsSlice'
 import { CookieUtils } from './utils/cookieUtils'
 
 const start = async () => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+
     const container = document.getElementById('root')
     const root = createRoot(container)
 
-    library.add(faTrash)
+    library.add(faMoon, faTrash, faSun)
 
     const sessionCookie = CookieUtils.getCookie('elo-ranker_session')
     if (sessionCookie) {

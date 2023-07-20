@@ -22,7 +22,7 @@ code {
 }
 
 .elo-ranker-input {
-  @apply bg-white text-gray-700 border border-gray-200 rounded-md p-1 outline-none;
+  @apply bg-white dark:bg-zinc-800 text-gray-700 dark:text-white border border-gray-200 rounded-md p-1 outline-none;
 }
 
 input:hover,

@@ -1,37 +1,45 @@
 /* using mostly the same breakpoints as defined in Tailwind */
 
-@media only screen and (min-width: 768px) {
-  .grid-container {
-    display: grid;
-    padding: 0.5em;
-  }
+.grid-container {
+  display: grid;
+  padding: 0.5em;
 }
 
 @media only screen and (min-width: 768px) {
   .grid-container {
-    display: grid;
     grid-template-columns: 32.5% 32.5% 35%;
-    padding: 0.5em;
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .grid-container {
-    display: grid;
     grid-template-columns: 35% 35% 30%;
-    padding: 0.5em;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .grid-container {
-    display: grid;
     grid-template-columns: 37.5% 37.5% 25%;
-    padding: 0.5em;
   }
+}
+
+.ranking-ol-edit {
+  @apply list-decimal border-2 border-l-0 border-black dark:border-white;
+}
+
+.ranking-ol-view {
+  @apply list-decimal border border-x-0 border-black dark:border-white;
 }
 
 .ranking-list {
   display: grid;
   grid-template-columns: 80% 20%;
+}
+
+.ranking-list__item-name {
+  @apply font-semibold text-black dark:text-white;
+}
+
+.ranking__title {
+  @apply text-3xl font-bold text-black dark:text-white text-center my-2;
 }

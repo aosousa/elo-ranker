@@ -2,7 +2,7 @@
 
 @media only screen and (max-width: 600px) {
   .grid-item {
-    @apply text-4xl text-center align-middle bg-white hover:bg-green-50 border-2 border-black py-4 cursor-pointer;
+    @apply text-4xl text-center align-middle bg-white dark:bg-zinc-800 hover:bg-green-50 dark:hover:bg-zinc-500 border-2 border-black dark:border-white py-4 cursor-pointer;
   }
 
   .grid-item-img {
@@ -12,13 +12,13 @@
   }
 
   .grid-item-name {
-    @apply w-2/3 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+    @apply w-2/3 font-semibold bg-black dark:bg-white text-white dark:text-black p-2 rounded-md mt-8 mx-auto;
   }
 }
 
 @media only screen and (min-width: 600px) {
   .grid-item {
-    @apply text-4xl text-center align-middle bg-white hover:bg-green-50 border-2 border-black py-4 cursor-pointer;
+    @apply text-4xl text-center align-middle bg-white dark:bg-zinc-800 hover:bg-green-50 dark:hover:bg-zinc-500 border-2 border-black dark:border-white py-4 cursor-pointer;
   }
 
   .grid-item-img {
@@ -28,7 +28,7 @@
   }
 
   .grid-item-name {
-    @apply w-2/3 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+    @apply w-2/3 font-semibold bg-black dark:bg-white text-white dark:text-black p-2 rounded-md mt-8 mx-auto;
   }
 }
 
@@ -40,7 +40,7 @@
   }
 
   .grid-item-name {
-    @apply w-2/3 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+    @apply w-2/3 font-semibold bg-black dark:bg-white text-white dark:text-black p-2 rounded-md mt-8 mx-auto;
   }
 }
 
@@ -52,13 +52,13 @@
   }
 
   .grid-item-name {
-    @apply w-1/2 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+    @apply w-1/2 font-semibold bg-black dark:bg-white text-white dark:text-black p-2 rounded-md mt-8 mx-auto;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .grid-item {
-    @apply text-4xl text-center align-middle bg-white hover:bg-green-50 border-2 border-black first:border-r-0 py-4 cursor-pointer;
+    @apply text-4xl text-center align-middle bg-white dark:bg-zinc-800 hover:bg-green-50 dark:hover:bg-zinc-500 border-2 border-black dark:border-white first:border-r-0 py-4 cursor-pointer;
   }
 
   .grid-item-img {
@@ -68,6 +68,6 @@
   }
 
   .grid-item-name {
-    @apply w-1/2 font-semibold bg-black text-white p-2 rounded-md mt-8 mx-auto;
+    @apply w-1/2 font-semibold bg-black dark:bg-white text-white dark:text-black p-2 rounded-md mt-8 mx-auto;
   }
 }

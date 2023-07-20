@@ -1,16 +1,19 @@
 // Core
 import React, { useEffect, useState } from 'react'
+import './TopBar.css'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { store } from '../app/store'
+import { store } from '../../app/store'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Components
-import Modal from './Modal'
+import Modal from '../modal/Modal'
 
 // Features
-import { login, logout } from '../features/auth/authSlice'
+import { login, logout } from '../../features/auth/authSlice'
 
 export const TopBar = () => {
+  const [theme, setTheme] = useState('theme' in localStorage ? localStorage.theme : 'dark')
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false)
   const [loginError, setLoginError] = useState(false)
   const [username, setUsername] = useState('')
@@ -55,12 +58,22 @@ export const TopBar = () => {
     }
   }, [authStatus])
 
+  const changeTheme = (theme) => {
+    setTheme(theme)
+    localStorage.setItem('theme', theme)
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }
+
   return (
-    <div className="h-12 flex flex-row items-center bg-white shadow-sm border-b">
-      <div className="flex font-semibold flex-shrink-0 ml-4 pr-4 border-r" onMouseEnter={() => setHoverStatus(true)} onMouseLeave={() => setHoverStatus(false)}>
-        {!hoverStatus && <div className="bg-white text-blue-600 text-2xl font-semibold p-1.5">ELO Ranker</div>}
+    <div className="top-bar">
+      <div className="top-bar__logo-div" onMouseEnter={() => setHoverStatus(true)} onMouseLeave={() => setHoverStatus(false)}>
+        {!hoverStatus && <div className="top-bar__logo-div-title">ELO Ranker</div>}
         {hoverStatus && (
-          <div className="rounded-md p-1.5">
+          <div className="top-bar__logo-div-easter-egg">
             <div className="text-sm">&quot;I need the algorithm.&quot;</div>
             <div className="italic text-xs">The Social Network (2010)</div>
           </div>
@@ -74,6 +87,12 @@ export const TopBar = () => {
       </div>
 
       <div className="flex flex-shrink-0 ml-auto mr-2">
+        {theme === 'dark' ? (
+          <FontAwesomeIcon title="Light Mode" className="text-white mt-2 mr-4 w-5 h-5 cursor-pointer" icon="sun" onClick={() => changeTheme('light')} />
+        ) : (
+          <FontAwesomeIcon title="Dark Mode" className="text-zinc-800 mt-2 mr-4 w-5 h-5 cursor-pointer" icon="moon" onClick={() => changeTheme('dark')} />
+        )}
+
         {authData === '' && (
           <button
             className="bg-green-600 hover:bg-green-700 focus:bg-green-700 font-semibold text-white rounded-md hover:shadow-md focus:shadow-md outline-none px-4 py-1.5"

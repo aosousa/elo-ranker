@@ -4,7 +4,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 // Components
-import { TopBar } from './components/TopBar'
+import { TopBar } from './components/topBar/TopBar'
 
 // Features
 import { Ranking } from './features/rankings/Ranking'

@@ -1,0 +1,15 @@
+.top-bar {
+  @apply h-12 flex flex-row items-center bg-white dark:bg-zinc-800 shadow-sm border-b;
+}
+
+.top-bar__logo-div {
+  @apply flex font-semibold flex-shrink-0 ml-4 pr-4 border-r;
+}
+
+.top-bar__logo-div-title {
+  @apply text-blue-600 text-2xl font-semibold p-1.5;
+}
+
+.top-bar__logo-div-easter-egg {
+  @apply text-black dark:text-white rounded-md p-1.5;
+}

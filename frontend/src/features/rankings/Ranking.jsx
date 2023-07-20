@@ -27,12 +27,12 @@ export const Ranking = () => {
   const top25Items = items.slice(0, 25)
 
   const rankingContent = (
-    <ol className={auth !== '' ? 'list-decimal border-2 border-l-0 border-black' : 'list-decimal border border-x-0 border-black'}>
+    <ol className={auth !== '' ? 'ranking-ol-edit' : 'ranking-ol-view'}>
       {top25Items.map((item) => (
-        <li className="ml-8" key={item.id}>
+        <li className="ml-8 dark:marker:text-white" key={item.id}>
           <div className="ranking-list">
-            <div className="font-semibold">{item.name}</div>
-            <div className={auth !== '' ? '' : 'text-right mr-2'}>{item.rating.toFixed(2)}</div>
+            <div className="ranking-list__item-name">{item.name}</div>
+            <div className={auth !== '' ? 'text-black dark:text-white' : 'text-black dark:text-white text-right mr-2'}>{item.rating.toFixed(2)}</div>
           </div>
         </li>
       ))}
@@ -125,7 +125,7 @@ export const Ranking = () => {
 
   return (
     <>
-      <div className="text-3xl font-bold text-center my-2">{ranking ? ranking.name : ''}</div>
+      <div className="ranking__title">{ranking ? ranking.name : ''}</div>
       {auth !== '' && (
         <div className="grid-container">
           {leftItem && <RankingItem item={leftItem} vote={() => updateItemRanking(leftItem, rightItem)} />}

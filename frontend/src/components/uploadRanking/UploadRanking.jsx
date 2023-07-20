@@ -1,10 +1,11 @@
 // Core
 import React, { useState } from 'react'
+import './UploadRanking.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { store } from '../app/store'
+import { store } from '../../app/store'
 
 // Features
-import { createRanking } from '../features/rankings/rankingsSlice'
+import { createRanking } from '../../features/rankings/rankingsSlice'
 
 export const UploadRanking = () => {
   const rankingsSliceStatus = useSelector(() => store.getState().rankings.status)
@@ -47,7 +48,7 @@ export const UploadRanking = () => {
 
   return (
     <div className="grid">
-      <label className="font-semibold" htmlFor="name">
+      <label className="upload-ranking-label" htmlFor="name">
         Name
       </label>
       <input type="text" id="name" className="elo-ranker-input" placeholder="Name" onChange={handleNameChange} />
