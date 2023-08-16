@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, lazy, useEffect, useState } from 'react'
 import './TopBar.css'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,10 +7,12 @@ import { store } from '../../app/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Components
-import Modal from '../modal/Modal'
+import Loading from '../loading/Loading'
 
 // Features
 import { login, logout } from '../../features/auth/authSlice'
+
+const Modal = lazy(() => import('../modal/Modal'))
 
 export const TopBar = () => {
   const [theme, setTheme] = useState('theme' in localStorage ? localStorage.theme : 'dark')
@@ -112,33 +114,35 @@ export const TopBar = () => {
       </div>
 
       {loginModalIsOpen && (
-        <Modal title="Login" closeModal={() => setLoginModalIsOpen(false)}>
-          <form className="flex flex-col mx-auto">
-            <div className="flex flex-col">
-              <label htmlFor="username" className="font-semibold">
-                Username
-              </label>
-              <input id="username" type="text" placeholder="Username" className="elo-ranker-input" onChange={onUsernameChanged} />
-            </div>
+        <Suspense fallback={<Loading />}>
+          <Modal title="Login" closeModal={() => setLoginModalIsOpen(false)}>
+            <form className="flex flex-col mx-auto">
+              <div className="flex flex-col">
+                <label htmlFor="username" className="font-semibold">
+                  Username
+                </label>
+                <input id="username" type="text" placeholder="Username" className="elo-ranker-input" onChange={onUsernameChanged} />
+              </div>
 
-            <div className="flex flex-col mt-2">
-              <label htmlFor="password" className="font-semibold">
-                Password
-              </label>
-              <input id="password" type="password" placeholder="Password" className="elo-ranker-input" onChange={onPasswordChanged} />
-            </div>
+              <div className="flex flex-col mt-2">
+                <label htmlFor="password" className="font-semibold">
+                  Password
+                </label>
+                <input id="password" type="password" placeholder="Password" className="elo-ranker-input" onChange={onPasswordChanged} />
+              </div>
 
-            <button
-              className="flex justify-center items-center bg-sky-500 hover:bg-sky-600 disabled:bg-sky-300 hover:shadow-md text-white font-bold rounded-md disabled:pointer-events-none select-none p-1 mt-4"
-              disabled={authStatus === 'loading'}
-              onClick={onLoginButtonClicked}
-            >
-              Login
-            </button>
+              <button
+                className="flex justify-center items-center bg-sky-500 hover:bg-sky-600 disabled:bg-sky-300 hover:shadow-md text-white font-bold rounded-md disabled:pointer-events-none select-none p-1 mt-4"
+                disabled={authStatus === 'loading'}
+                onClick={onLoginButtonClicked}
+              >
+                Login
+              </button>
 
-            {loginError && <div className="mt-1 text-center text-xs text-red-700">Failed to authenticate user.</div>}
-          </form>
-        </Modal>
+              {loginError && <div className="mt-1 text-center text-xs text-red-700">Failed to authenticate user.</div>}
+            </form>
+          </Modal>
+        </Suspense>
       )}
     </div>
   )

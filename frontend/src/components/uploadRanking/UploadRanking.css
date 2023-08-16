@@ -1,3 +1,19 @@
 .upload-ranking-label {
   @apply font-semibold text-black dark:text-white;
 }
+
+.upload-ranking-json-message {
+  @apply text-xs text-black dark:text-white;
+}
+
+.upload-ranking-json-code {
+  @apply text-xs text-black dark:text-white my-2;
+}
+
+.upload-ranking-btn {
+  @apply font-semibold bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white mt-2 p-2 rounded-md;
+}
+
+.upload-ranking-error {
+  @apply text-xs text-red-700 mt-1 mr-2;
+}

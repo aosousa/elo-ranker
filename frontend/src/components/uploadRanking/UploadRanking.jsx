@@ -48,17 +48,24 @@ export const UploadRanking = () => {
 
   return (
     <div className="grid">
+      <div className="upload-ranking-json-message">File has to be in JSON format with the following structure:</div>
+      <code className="upload-ranking-json-code">
+        id: number,
+        <br />
+        name: string,
+        <br />
+        imageSrc: string,
+        <br />
+        rating: 1400
+      </code>
       <label className="upload-ranking-label" htmlFor="name">
         Name
       </label>
       <input type="text" id="name" className="elo-ranker-input" placeholder="Name" onChange={handleNameChange} />
-
       <input type="file" id="ranking-file" className="elo-ranker-input mt-2" onChange={handleFileChange} />
-
-      <button disabled={!canSave} className="font-semibold bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white mt-2 p-2 rounded-md" onClick={handleUploadClick}>
+      <button disabled={!canSave} className="upload-ranking-btn" onClick={handleUploadClick}>
         Create Ranking
       </button>
-
       {submitError && <div className="text-xs text-red-700 mt-1 mr-2">An error occurred while uploading the ranking.</div>}
     </div>
   )
