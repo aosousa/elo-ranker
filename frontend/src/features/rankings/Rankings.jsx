@@ -38,6 +38,7 @@ export const Rankings = () => {
   return (
     <div className="rankings">
       <div className="rankings__title">Rankings</div>
+      {rankings.length === 0 && <p className="rankings__no-rankings-msg">No rankings created yet!</p>}
       <div className="mt-2 px-2">{rankingsList}</div>
       {auth !== '' && (
         <div className="rankings__create-ranking">

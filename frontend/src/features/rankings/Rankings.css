@@ -21,3 +21,7 @@
 .rankings__create-ranking-title {
   @apply font-semibold text-lg text-black dark:text-white;
 }
+
+.rankings__no-rankings-msg {
+  @apply text-black dark:text-white;
+}
