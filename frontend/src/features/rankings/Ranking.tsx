@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import './Ranking.css'
-import { store } from '../../app/store'
+import { AppDispatch, store } from '../../app/store'
 
 // Features
 import { RankingItem } from './RankingItem'
 import { updateRanking, selectRankingById } from './rankingsSlice'
+
+// Types
+import { RankingItem as TRankingItem } from '../../types/Ranking'
 
 export const Ranking = () => {
   /**
@@ -16,19 +19,19 @@ export const Ranking = () => {
    */
   const K = 30
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const params = useParams()
 
   const auth = useSelector(() => store.getState().auth.data)
   const ranking = useSelector((state) => selectRankingById(state, String(params.id)))
   const rankingSliceStatus = useSelector(() => store.getState().rankings.status)
-  const items = ranking ? JSON.parse(ranking.ranking) : []
+  const items: TRankingItem[] = ranking ? JSON.parse(ranking.ranking) : []
   const top25Items = items.slice(0, 25)
 
   const rankingContent = (
     <ol className={auth !== '' ? 'ranking-ol-edit' : 'ranking-ol-view'}>
-      {top25Items.map((item) => (
+      {top25Items.map((item: TRankingItem) => (
         <li className="ml-8 dark:marker:text-white" key={item.id}>
           <div className="ranking-list">
             <div className="ranking-list__item-name">{item.name}</div>
@@ -39,8 +42,8 @@ export const Ranking = () => {
     </ol>
   )
 
-  const [leftItem, setLeftItem] = useState(null)
-  const [rightItem, setRightItem] = useState(null)
+  const [leftItem, setLeftItem] = useState<TRankingItem | null>(null)
+  const [rightItem, setRightItem] = useState<TRankingItem | null>(null)
 
   const loadPair = () => {
     const leftRandom = Math.floor(Math.random() * items.length)
@@ -56,19 +59,19 @@ export const Ranking = () => {
   }
 
   /**
-   * Calculate new ELO for a given tiem
-   * @param {object} a Item A
-   * @param {object} b Item B
+   * Calculate new ELO for a given item
+   * @param {number} a Item A's rating
+   * @param {number} b Item B's rating
    */
-  const elo = (a, b) => 1 / (1 + Math.pow(10, (b - a) / 400))
+  const elo = (a: number, b: number) => 1 / (1 + Math.pow(10, (b - a) / 400))
 
   /**
    * Sort items by their rating
-   * @param {object} a Item A
-   * @param {object} b Item B
+   * @param {RankingItem} a Item A
+   * @param {RankingItem} b Item B
    * @returns
    */
-  const sortItemByRating = (a, b) => {
+  const sortItemByRating = (a: TRankingItem, b: TRankingItem) => {
     if (a.rating < b.rating) {
       return 1
     }
@@ -82,10 +85,10 @@ export const Ranking = () => {
 
   /**
    * Update an item's ELO rating
-   * @param {object} a Item A
-   * @param {object} b Item B
+   * @param {RankingItem} a Item A
+   * @param {RankingItem} b Item B
    */
-  const updateItemRanking = (a, b) => {
+  const updateItemRanking = (a: TRankingItem, b: TRankingItem) => {
     const Pa = elo(a.id, b.id)
     const Pb = elo(b.id, a.id)
 
@@ -104,13 +107,15 @@ export const Ranking = () => {
 
     const sortedItems = items.sort(sortItemByRating)
 
-    dispatch(
-      updateRanking({
-        id: ranking.id,
-        name: ranking.name,
-        ranking: JSON.stringify(sortedItems)
-      })
-    )
+    if (ranking) {
+      dispatch(
+        updateRanking({
+          id: ranking.id,
+          name: ranking.name,
+          ranking: JSON.stringify(sortedItems)
+        })
+      )
+    }
   }
 
   useEffect(() => {
@@ -128,8 +133,8 @@ export const Ranking = () => {
       <div className="ranking__title">{ranking ? ranking.name : ''}</div>
       {auth !== '' && (
         <div className="grid-container">
-          {leftItem && <RankingItem item={leftItem} vote={() => updateItemRanking(leftItem, rightItem)} />}
-          {rightItem && <RankingItem item={rightItem} vote={() => updateItemRanking(rightItem, leftItem)} />}
+          {leftItem && <RankingItem item={leftItem} vote={() => updateItemRanking(leftItem!, rightItem!)} />}
+          {rightItem && <RankingItem item={rightItem} vote={() => updateItemRanking(rightItem!, leftItem!)} />}
           {rankingContent}
         </div>
       )}

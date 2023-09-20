@@ -1,7 +1,13 @@
 import React from 'react'
 import './Modal.css'
 
-const Modal = (props) => (
+type ModalProps = {
+  title: string
+  children: React.ReactNode
+  closeModal: () => void
+}
+
+const Modal = (props: ModalProps) => (
   <div className="modal">
     <div className="modal__header">
       <div className="modal__header-title-div">

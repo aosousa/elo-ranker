@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import './UploadRanking.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { store } from '../../app/store'
+import { AppDispatch, store } from '../../app/store'
 
 // Features
 import { createRanking } from '../../features/rankings/rankingsSlice'
@@ -13,20 +13,20 @@ export const UploadRanking = () => {
   const [submitError, setSubmitError] = useState(false)
 
   const [name, setName] = useState('')
-  const handleNameChange = (e) => setName(e.target.value)
+  const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => setName((e.target as HTMLInputElement).value)
 
-  const [file, setFile] = useState(null)
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      setFile(e.target.files[0])
+  const [file, setFile] = useState<any>(null)
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if ((e.currentTarget as HTMLInputElement).files) {
+      setFile((e.currentTarget as HTMLInputElement).files![0])
     }
   }
 
   const canSave = [name, file].every(Boolean)
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
-  const handleUploadClick = () => {
+  const handleUploadClick = async () => {
     try {
       setSubmitError(false)
 
@@ -34,14 +34,21 @@ export const UploadRanking = () => {
       formData.append('name', name)
       formData.append('ranking', file)
 
-      dispatch(createRanking(formData))
+      await dispatch(createRanking(formData))
     } catch (error) {
       setSubmitError(true)
       console.error(`Failed to upload ranking: ${error}`)
     } finally {
       if (rankingsSliceStatus === 'succeeded') {
-        document.getElementById('name').value = ''
-        document.getElementById('ranking-file').value = ''
+        const nameEl = document.getElementById('name') as HTMLInputElement | null
+        if (nameEl) {
+          nameEl.value = ''
+        }
+
+        const fileEl = document.getElementById('ranking-file') as HTMLInputElement | null
+        if (fileEl) {
+          fileEl.value = ''
+        }
       }
     }
   }

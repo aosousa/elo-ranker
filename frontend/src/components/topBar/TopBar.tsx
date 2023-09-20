@@ -3,7 +3,7 @@ import React, { Suspense, lazy, useEffect, useState } from 'react'
 import './TopBar.css'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { store } from '../../app/store'
+import { AppDispatch, store } from '../../app/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Components
@@ -21,18 +21,18 @@ export const TopBar = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const authData = useSelector(() => store.getState().auth.data)
   const authStatus = useSelector(() => store.getState().auth.status)
 
   const [hoverStatus, setHoverStatus] = useState(false)
 
-  const onUsernameChanged = (e) => setUsername(e.target.value)
-  const onPasswordChanged = (e) => setPassword(e.target.value)
-  const onLoginButtonClicked = () => {
+  const onUsernameChanged = (e: React.FormEvent<HTMLInputElement>) => setUsername((e.target as HTMLInputElement).value)
+  const onPasswordChanged = (e: React.FormEvent<HTMLInputElement>) => setPassword((e.target as HTMLInputElement).value)
+  const onLoginButtonClicked = async () => {
     try {
       setLoginError(false)
-      dispatch(
+      await dispatch(
         login({
           username,
           password
@@ -44,9 +44,7 @@ export const TopBar = () => {
     }
   }
 
-  const onLogoutButtonClicked = async () => {
-    store.dispatch(logout())
-  }
+  const onLogoutButtonClicked = async () => store.dispatch(logout())
 
   useEffect(() => {
     if (authStatus === 'failed') {
@@ -60,7 +58,7 @@ export const TopBar = () => {
     }
   }, [authStatus])
 
-  const changeTheme = (theme) => {
+  const changeTheme = (theme: string) => {
     setTheme(theme)
     localStorage.setItem('theme', theme)
     if (theme === 'dark') {
