@@ -27,11 +27,11 @@ export const Ranking = () => {
   const ranking = useSelector((state) => selectRankingById(state, String(params.id)))
   const rankingSliceStatus = useSelector(() => store.getState().rankings.status)
   const items: TRankingItem[] = ranking ? JSON.parse(ranking.ranking) : []
-  const top25Items = items.slice(0, 25)
+  const top15Items = items.slice(0, 15)
 
   const rankingContent = (
     <ol className={auth !== '' ? 'ranking-ol-edit' : 'ranking-ol-view'}>
-      {top25Items.map((item: TRankingItem) => (
+      {top15Items.map((item: TRankingItem) => (
         <li className="ml-8 dark:marker:text-white" key={item.id}>
           <div className="ranking-list">
             <div className="ranking-list__item-name">{item.name}</div>
