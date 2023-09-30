@@ -69,48 +69,51 @@ export const TopBar = () => {
   }
 
   return (
-    <div className="top-bar">
-      <div className="top-bar__logo-div" onMouseEnter={() => setHoverStatus(true)} onMouseLeave={() => setHoverStatus(false)}>
-        {!hoverStatus && <div className="top-bar__logo-div-title">ELO Ranker</div>}
-        {hoverStatus && (
-          <div className="top-bar__logo-div-easter-egg">
-            <div className="text-sm">&quot;I need the algorithm.&quot;</div>
-            <div className="italic text-xs">The Social Network (2010)</div>
-          </div>
-        )}
-      </div>
+    <header className="top-bar">
+      <nav className="contents">
+        <ul className="contents">
+          <li className="top-bar__logo" onMouseEnter={() => setHoverStatus(true)} onMouseLeave={() => setHoverStatus(false)}>
+            {!hoverStatus && <div className="top-bar__logo-title">ELO Ranker</div>}
+            {hoverStatus && (
+              <div className="top-bar__logo-easter-egg">
+                <p className="text-sm">&quot;I need the algorithm.&quot;</p>
+                <p className="italic text-xs">The Social Network (2010)</p>
+              </div>
+            )}
+          </li>
 
-      <div className="flex flex-shrink-0 ml-2">
-        <NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')}>
-          Rankings
-        </NavLink>
-      </div>
+          <li className="flex flex-shrink-0 ml-2">
+            <NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')}>
+              Rankings
+            </NavLink>
+          </li>
 
-      <div className="flex flex-shrink-0 ml-auto mr-2">
-        {theme === 'dark' ? (
-          <FontAwesomeIcon title="Light Mode" className="text-white mt-2 mr-4 w-5 h-5 cursor-pointer" icon="sun" onClick={() => changeTheme('light')} />
-        ) : (
-          <FontAwesomeIcon title="Dark Mode" className="text-zinc-800 mt-2 mr-4 w-5 h-5 cursor-pointer" icon="moon" onClick={() => changeTheme('dark')} />
-        )}
+          <li className="flex flex-shrink-0 ml-auto mr-2">
+            {theme === 'dark' ? (
+              <FontAwesomeIcon title="Light Mode" className="text-white mt-2 mr-4 w-5 h-5 cursor-pointer" icon="sun" onClick={() => changeTheme('light')} />
+            ) : (
+              <FontAwesomeIcon title="Dark Mode" className="text-zinc-800 mt-2 mr-4 w-5 h-5 cursor-pointer" icon="moon" onClick={() => changeTheme('dark')} />
+            )}
 
-        {authData === '' && (
-          <button
-            className="bg-green-600 hover:bg-green-700 focus:bg-green-700 font-semibold text-white rounded-md hover:shadow-md focus:shadow-md outline-none px-4 py-1.5"
-            onClick={() => setLoginModalIsOpen(true)}
-          >
-            Edit Mode
-          </button>
-        )}
-        {authData !== '' && (
-          <button
-            className="bg-gray-600 hover:bg-gray-700 focus:bg-gray-700 font-semibold text-white rounded-md hover:shadow-md focus:shadow-md outline-none px-4 py-1.5"
-            onClick={onLogoutButtonClicked}
-          >
-            View Mode
-          </button>
-        )}
-      </div>
-
+            {authData === '' && (
+              <button
+                className="bg-green-600 hover:bg-green-700 focus:bg-green-700 font-semibold text-white rounded-md hover:shadow-md focus:shadow-md outline-none px-4 py-1.5"
+                onClick={() => setLoginModalIsOpen(true)}
+              >
+                Edit Mode
+              </button>
+            )}
+            {authData !== '' && (
+              <button
+                className="bg-gray-600 hover:bg-gray-700 focus:bg-gray-700 font-semibold text-white rounded-md hover:shadow-md focus:shadow-md outline-none px-4 py-1.5"
+                onClick={onLogoutButtonClicked}
+              >
+                View Mode
+              </button>
+            )}
+          </li>
+        </ul>
+      </nav>
       {loginModalIsOpen && (
         <Suspense fallback={<Loading />}>
           <Modal title="Login" closeModal={() => setLoginModalIsOpen(false)}>
@@ -142,6 +145,6 @@ export const TopBar = () => {
           </Modal>
         </Suspense>
       )}
-    </div>
+    </header>
   )
 }

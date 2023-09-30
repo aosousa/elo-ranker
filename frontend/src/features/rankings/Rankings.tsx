@@ -23,7 +23,7 @@ export const Rankings = () => {
   const rankingsList = rankings.map((ranking) => (
     <div className="flex flex-row" key={ranking.id}>
       <NavLink key={ranking.id} to={`/rankings/${ranking.id}`}>
-        <div className="ranking-list-item">{ranking.name}</div>
+        <p className="ranking-list-item">{ranking.name}</p>
       </NavLink>
       {auth !== '' && (
         <button type="button" title="Delete Ranking" className="rankings__delete-ranking-btn" onClick={() => onDeleteRankingButtonClicked(ranking.id)}>
@@ -38,12 +38,10 @@ export const Rankings = () => {
       <div className="rankings__title">Rankings</div>
       {rankings.length === 0 && <p className="rankings__no-rankings-msg">No rankings created yet!</p>}
       <div className="grid sm:grid-cols-1 md:grid-cols-2">
-        {auth !== '' && (
-          <div className="rankings__create-ranking">
-            <div className="rankings__create-ranking-title">Create New Ranking</div>
-            <UploadRanking />
-          </div>
-        )}
+        <div className="rankings__create-ranking">
+          <div className="rankings__create-ranking-title">Create New Ranking</div>
+          <UploadRanking />
+        </div>
         <div className="mt-2 px-2">{rankingsList}</div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 .ranking-list-item {
-  @apply bg-gray-200 dark:bg-white font-semibold rounded-md p-2 my-2;
+  @apply bg-gray-200 dark:bg-zinc-700 dark:text-white font-semibold rounded-md p-2 my-2;
 }
 
 .rankings {

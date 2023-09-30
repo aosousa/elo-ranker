@@ -25,7 +25,7 @@ export async function client(clientData: ApiClientData) {
 
   let data
   try {
-    const response = await fetch(`http://localhost:4000/elo-ranker-api${clientData.endpoint}`, config)
+    const response = await window.fetch(`${process.env.REACT_APP_BASE_URI}${process.env.REACT_APP_API_URI}${clientData.endpoint}`, config)
 
     data = await response.json()
 

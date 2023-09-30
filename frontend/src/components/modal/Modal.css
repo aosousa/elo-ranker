@@ -6,11 +6,11 @@
   @apply flex flex-col w-full bg-white dark:bg-zinc-800 text-black dark:text-white rounded-lg overflow-auto md:w-6/12 2xl:w-4/12;
 }
 
-.modal__header-title-div {
+.modal__header-title {
   @apply flex flex-row border-b p-4;
 }
 
-.modal__header-title-div-text {
+.modal__header-title-text {
   @apply flex flex-col font-semibold text-lg;
 }
 

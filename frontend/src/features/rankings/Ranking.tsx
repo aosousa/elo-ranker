@@ -34,8 +34,8 @@ export const Ranking = () => {
       {top15Items.map((item: TRankingItem) => (
         <li className="ml-8 dark:marker:text-white" key={item.id}>
           <div className="ranking-list">
-            <div className="ranking-list__item-name">{item.name}</div>
-            <div className={auth !== '' ? 'text-black dark:text-white' : 'text-black dark:text-white text-right mr-2'}>{item.rating.toFixed(2)}</div>
+            <p className="ranking-list__item-name">{item.name}</p>
+            <p className={auth !== '' ? 'text-black dark:text-white' : 'text-black dark:text-white text-right mr-2'}>{item.rating.toFixed(2)}</p>
           </div>
         </li>
       ))}
@@ -130,7 +130,7 @@ export const Ranking = () => {
 
   return (
     <>
-      <div className="ranking__title">{ranking ? ranking.name : ''}</div>
+      <h2 className="ranking__title">{ranking ? ranking.name : ''}</h2>
       {auth !== '' && (
         <div className="grid-container">
           {leftItem && <RankingItem item={leftItem} vote={() => updateItemRanking(leftItem!, rightItem!)} />}

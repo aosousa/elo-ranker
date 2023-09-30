@@ -13,6 +13,6 @@ type RankingItemProps = {
 export const RankingItem = (props: RankingItemProps) => (
   <div className="grid-item" onClick={() => props.vote()}>
     <img className="grid-item-img" src={props.item.imageSrc} />
-    <div className="grid-item-name">{props.item.name}</div>
+    <p className="grid-item-name">{props.item.name}</p>
   </div>
 )

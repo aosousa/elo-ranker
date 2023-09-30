@@ -55,7 +55,7 @@ export const UploadRanking = () => {
 
   return (
     <div className="grid">
-      <div className="upload-ranking-json-message">File has to be in JSON format with the following structure:</div>
+      <p className="upload-ranking-json-message">File has to be in JSON format with the following structure:</p>
       <code className="upload-ranking-json-code">
         id: number,
         <br />
@@ -73,7 +73,7 @@ export const UploadRanking = () => {
       <button disabled={!canSave} className="upload-ranking-btn" onClick={handleUploadClick}>
         Create Ranking
       </button>
-      {submitError && <div className="text-xs text-red-700 mt-1 mr-2">An error occurred while uploading the ranking.</div>}
+      {submitError && <p className="text-xs text-red-700 mt-1 mr-2">An error occurred while uploading the ranking.</p>}
     </div>
   )
 }
