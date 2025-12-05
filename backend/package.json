@@ -23,7 +23,7 @@
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.9.8",
-    "nodemon": "^2.0.22",
+    "nodemon": "^3.1.11",
     "sequelize": "^6.31.1"
   }
 }
